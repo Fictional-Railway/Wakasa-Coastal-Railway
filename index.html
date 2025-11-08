@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>若狭海岸鉄道</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="./index.html"><img class="logo" src="./img/若狭海岸ロゴ1.png" alt=""></a>
+      <button class="menu-toggle" aria-label="メニューを開く">☰</button>
+    </div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="#">ホーム</a></li>
+        <li><a href="#">路線案内</a></li>
+        <li><a href="#">車両紹介</a></li>
+        <li><a href="#">時刻・運賃</a></li>
+        <li><a href="#">沿線観光</a></li>
+        <li><a href="#">会社案内</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-overlay">
+        <h2 class="hero-title">海と走る､<br class="mobile-only">まちとつながる｡</h2>
+        <p class="hero-sub">若狭海岸鉄道は、<br>海風薫る沿線を今日も走ります｡</p>
+      </div>
+    </section>
+    <br>
+    <section class="unkoujouhou">
+        <div class="section-inside">
+            <h2>運行情報</h2>
+            <p class="quick-search-form">現在、全線で通常通り運転しています。</p>
+        </div>
+    </section>
+    <br>
+    <section class="unkoujouhou">
+        <div class="section-inside">
+            <h2>クイック検索</h2>
+            <form class="quick-search-form" action="search.html" method="get" aria-label="若狭海岸鉄道 クイック検索フォーム" method="get" aria-label="若狭海岸鉄道 クイック検索フォーム">
+                <div class="form-grid">
+                    <label class="form-label">
+                        出発駅
+                        <select name="from" required>
+                            <option value="">選択してください</option>
+                            <option value="higasie">東江</option>
+                            <option value="takauramisaki">高浦岬</option>
+                            <option value="ezaki">江崎</option>
+                            <option value="nisiezaki">西江崎</option>
+                            <option value="mononobekaigan">物部海岸</option>
+                            <option value="higasimononobe">東物部</option>
+                            <option value="monobe">物部</option>
+                            <option value="ichizaki">市崎</option>
+                            <option value="funatani">舟谷</option>
+                            <option value="ifune">伊舟</option>
+                            <option value="shiogai">汐崖</option>
+                            <option value="kitashiogai">北汐崖</option>
+                            <option value="monobe">物部</option>
+                            <option value="watariminato">渡湊</option>
+                            <option value="watarimati">渡町</option>
+                            <option value="matsuyou">松陽</option>
+                            <option value="kitakouzu">北香津</option>
+                            <option value="kouzu">香津</option>
+                        </select>
+                    </label>
+                    <br>
+                    <label class="form-label">
+                        到着駅
+                        <select name="to" required>
+                            <option value="">選択してください</option>
+                            <option value="higasie">東江</option>
+                            <option value="takauramisaki">高浦岬</option>
+                            <option value="ezaki">江崎</option>
+                            <option value="nisiezaki">西江崎</option>
+                            <option value="mononobekaigan">物部海岸</option>
+                            <option value="higasimononobe">東物部</option>
+                            <option value="monobe">物部</option>
+                            <option value="ichizaki">市崎</option>
+                            <option value="funatani">舟谷</option>
+                            <option value="ifune">伊舟</option>
+                            <option value="shiogai">汐崖</option>
+                            <option value="kitashiogai">北汐崖</option>
+                            <option value="monobe">物部</option>
+                            <option value="watariminato">渡湊</option>
+                            <option value="watarimati">渡町</option>
+                            <option value="matsuyou">松陽</option>
+                            <option value="kitakouzu">北香津</option>
+                            <option value="kouzu">香津</option>
+                        </select>
+                    </label>
+                    <br>
+
+                    <label class="form-label">
+                        時刻
+                        <input type="time" name="time" aria-label="出発時刻">
+                    </label>
+                </div>
+                <br>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary" aria-label="検索する">検索</button>
+                </div>
+
+                <p class="search-note">※指定した条件で運行情報・時刻表を検索します。快速・普通の種別指定は検索結果画面で可能です。</p>
+
+                <div id="quick-search-result" class="quick-search-result" aria-live="polite"></div>
+            </form>
+        </div>
+    </section>
+    <br>
+    <section class="unkoujouhou">
+        <div class="section-inside">
+            <h2>路線図</h2>
+            <div class="routemap-div">
+            <div class="quick-search-form2">
+            <img src="./img/wakasa-routemap.png" width="95%" alt="正しく表示されませんでした。">
+            </div>
+            </div>
+        </div>
+    </section>
+    <br>
+    <section class="unkoujouhou">
+        <div class="section-inside">
+            <h2>ニュース</h2>
+            <ul class="quick-search-form3">
+                <li class="li-dot"><strong class="strong-li">2025/11/08</strong> 保線工事による深夜列車の運休について</li>
+                <li class="li-dot2"><strong class="strong-li">2025/08/01</strong> 汐崖町・崖祭による臨時列車の運行について</li>
+                <li class="li-dot3"><strong class="strong-li">2025/02/06</strong> 線路除雪作業による遅延・運休について</li>
+                <p><a class="motto" href="./notice.html">もっと見る…</a></p>
+            </ul>
+        </div>
+    </section>
+    <br>
+    <footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-info">
+      <p>&copy; 2025 若狭海岸鉄道 All Rights Reserved.</p>
+      <p>お問い合わせ: info@wakasa-coastal-railway.com | 電話: 000-###-####</p>
+    </div>
+    <div class="footer-nav">
+      <a href="#">ホーム</a>
+      <a href="#">町について</a>
+      <a href="#">観光案内</a>
+      <a href="#">アクセス</a>
+    </div>
+  </div>
+</footer>
+
+  </main>
+</body>
+</html>
