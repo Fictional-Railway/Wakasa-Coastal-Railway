@@ -318,3 +318,12 @@ body {
         text-decoration-style:dashed;
         text-decoration-color: #0066cc;
     }
+
+    .bana-{
+        display: flex;
+        margin: 10px;
+    }
+
+    .bana-img {
+        margin-right: 10px;
+    }
