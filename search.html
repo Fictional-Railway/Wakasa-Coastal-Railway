@@ -24,15 +24,17 @@
       </ul>
     </nav>
   </header>
+
 <main>
 <section class="search-result-section">
   <div class="section-inside">
     <h2>検索結果</h2>
 
     <div id="search-summary" class="search-summary"></div>
-
-    <div id="search-result-box" class="search-result-box"></div>
-
+    <div class="search-result-box-style">
+      <div id="search-result-box" class="search-result-box"></div>
+    </div>
+    <br>
     <div class="result-actions">
       <a href="./index.html" class="btn-secondary">トップへ戻る</a>
       <a href="./search.html" class="btn-primary">再検索する</a>
@@ -41,3 +43,202 @@
 </section>
 <br>
 </main>
+
+<script>
+// メニュー開閉処理
+const toggle = document.querySelector(".menu-toggle");
+const nav = document.querySelector(".main-nav");
+
+toggle.addEventListener("click", () => {
+  nav.classList.toggle("open");
+});
+</script>
+
+
+<!-- search.js（完全版を下に埋め込み） -->
+<script>
+// ------------------------------
+//   search.js 完全版
+// ------------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const summaryDiv = document.getElementById("search-summary");
+  const resultDiv = document.getElementById("search-result-box");
+
+  // URLパラメータ取得
+  const params = new URLSearchParams(window.location.search);
+  const from = params.get("from");
+  const to = params.get("to");
+  const time = params.get("time");
+
+  // 駅名マップ（英語→日本語）
+  const stationNames = {
+    higasie: "東江",
+    takauramisaki: "高浦岬",
+    ezaki: "江崎",
+    nisiezaki: "西江崎",
+    mononobekaigan: "物部海岸",
+    higasimononobe: "東物部",
+    monobe: "物部",
+    ichizaki: "市崎",
+    funatani: "舟谷",
+    ifune: "伊舟",
+    shiogai: "汐崖",
+    kitashiogai: "北汐崖",
+    watariminato: "渡湊",
+    watarimati: "渡町",
+    matsuyou: "松陽",
+    kitakouzu: "北香津",
+    kouzu: "香津"
+  };
+
+  if (!from || !to) {
+    summaryDiv.innerHTML = `<p style="color:red;">検索条件が正しく指定されていません。</p>`;
+    return;
+  }
+
+  // 検索条件の表示
+  summaryDiv.innerHTML = `
+    <p><strong>出発駅：</strong>${stationNames[from] || from}</p>
+    <p><strong>到着駅：</strong>${stationNames[to] || to}</p>
+    <p><strong>出発時刻：</strong>${time || "指定なし"}</p>
+  `;
+
+  // fakeTrains：停車駅つきリアル版
+  const fakeTrains = [
+    {
+      type: "普通",
+      dep: "07:12",
+      arr: "08:03",
+      stations: ["higasie", "ezaki", "monobe", "shiogai", "matsuyou", "kouzu"]
+    },
+    {
+      type: "普通",
+      dep: "07:48",
+      arr: "08:39",
+      stations: ["higasie", "takauramisaki", "ezaki", "monobe", "shiogai", "watarimati", "kouzu"]
+    },
+    {
+      type: "普通",
+      dep: "08:55",
+      arr: "09:46",
+      stations: ["ezaki", "nisiezaki", "mononobekaigan", "shiogai", "kitashiogai", "kouzu"]
+    },
+    {
+      type: "快速",
+      dep: "09:32",
+      arr: "10:06",
+      stations: ["higasie", "ezaki", "shiogai", "kouzu"]
+    },
+    {
+      type: "普通",
+      dep: "10:58",
+      arr: "11:49",
+      stations: ["monobe", "ichizaki", "funatani", "ifune", "shiogai", "watariminato", "kouzu"]
+    },
+    {
+      type: "普通",
+      dep: "12:10",
+      arr: "13:01",
+      stations: ["higasie", "ezaki", "monobe", "ichizaki", "shiogai", "matsuyou", "kouzu"]
+    },
+    {
+      type: "普通",
+      dep: "14:02",
+      arr: "14:54",
+      stations: ["ezaki", "nisiezaki", "mononobekaigan", "shiogai", "kitashiogai", "kouzu"]
+    },
+    {
+      type: "快速",
+      dep: "14:45",
+      arr: "15:18",
+      stations: ["higasie", "ezaki", "shiogai", "kouzu"]
+    },
+    {
+      type: "普通",
+      dep: "15:58",
+      arr: "16:49",
+      stations: ["monobe", "ichizaki", "funatani", "ifune", "shiogai", "watarimati", "kouzu"]
+    },
+    {
+      type: "普通",
+      dep: "17:12",
+      arr: "18:03",
+      stations: ["higasie", "ezaki", "monobe", "shiogai", "matsuyou", "kouzu"]
+    },
+    {
+      type: "普通",
+      dep: "17:55",
+      arr: "18:46",
+      stations: ["ezaki", "nisiezaki", "mononobekaigan", "shiogai", "kitashiogai", "kouzu"]
+    },
+    {
+      type: "普通",
+      dep: "19:08",
+      arr: "19:59",
+      stations: ["higasie", "ezaki", "monobe", "shiogai", "watarimati", "kouzu"]
+    },
+    {
+      type: "快速",
+      dep: "19:40",
+      arr: "20:12",
+      stations: ["higasie", "ezaki", "shiogai", "kouzu"]
+    }
+  ];
+
+  // ▼ 区間に合う列車だけ抽出
+  let filteredTrains = fakeTrains.filter((t) => {
+    const s = t.stations;
+    const fromIndex = s.indexOf(from);
+    const toIndex = s.indexOf(to);
+    return fromIndex !== -1 && toIndex !== -1 && fromIndex < toIndex;
+  });
+
+  // ▼ 時刻指定がある場合は dep >= time のみ
+  if (time) {
+    const later = filteredTrains.filter(t => t.dep >= time);
+    if (later.length > 0) {
+      filteredTrains = later;
+    }
+  }
+
+  // ▼ 何もなければ該当なし
+  if (filteredTrains.length === 0) {
+    resultDiv.innerHTML = `<p>該当する列車がありません。</p>`;
+    return;
+  }
+
+  // ▼ 結果HTML生成
+  let html = `
+    <table class="result-table">
+      <thead>
+        <tr>
+          <th>種別</th>
+          <th>出発</th>
+          <th>到着</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+
+  filteredTrains.forEach((t) => {
+    html += `
+      <tr>
+        <td>${t.type}</td>
+        <td>${t.dep}</td>
+        <td>${t.arr}</td>
+      </tr>
+    `;
+  });
+
+  html += `
+      </tbody>
+    </table>
+    <p class="result-note">※表示時刻はダミーです。実際のダイヤとは異なります。</p>
+  `;
+
+  resultDiv.innerHTML = html;
+});
+</script>
+
+</body>
+</html>

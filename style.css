@@ -374,3 +374,7 @@ body {
   .gallery { gap: 10px; }
   .card figcaption { font-size: 13px; padding: 8px; }
 }
+
+.search-result-box-style {
+  border: #005bb5 solid 2px;
+}
