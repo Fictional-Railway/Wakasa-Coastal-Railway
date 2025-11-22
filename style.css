@@ -273,6 +273,7 @@ body {
     }
 
     .quick-search-form3 {
+        list-style: none;
         background-color: #ffffff;
         border: 1px solid #ccc;
         border-radius: 5px;
@@ -377,4 +378,8 @@ body {
 
 .search-result-box-style {
   border: #005bb5 solid 2px;
+}
+
+.routemapimg {
+  text-align: left;
 }
