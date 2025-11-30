@@ -282,6 +282,15 @@ body {
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
+    .quick-search-form4 {
+        background-color: #ffffff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        padding-top: 0px;
+    }
+
     .strong-li{
         font-weight: 600;
     }
@@ -394,4 +403,23 @@ body {
 .quick-search-form select {
   width: 40px;   /* 好きな幅に調整してOK */
   max-width: 100%;
+}
+
+table {
+ border-collapse: collapse;
+ border: 2px solid black;
+}
+
+table th,
+table td {
+ border: 1px dashed gray;
+ padding: 5px;
+}
+
+table th {
+  background: #93dbff;
+}
+
+.kyori {
+  background: #d2d2d2;
 }
