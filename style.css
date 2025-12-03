@@ -444,6 +444,7 @@ table td {
 
 .tokkyu ul{
   padding-left: 15px;
+  list-style:decimal;
 }
 
 .route {
@@ -454,4 +455,21 @@ table td {
 .route2 {
   font-size: 130%;
   border-bottom: 2px dashed #b50045;
+}
+
+.sitemap a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.sitemap a:hover {
+  border-bottom: 1.5px dashed #fff;
+}
+
+.sitemap {
+  padding-left: 16px;
+}
+
+.sitemap {
+  list-style: none;
 }
