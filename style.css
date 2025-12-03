@@ -441,3 +441,17 @@ table td {
  font-size: 10px;
 }
 }
+
+.tokkyu ul{
+  padding-left: 15px;
+}
+
+.route {
+  font-size: 130%;
+  border-bottom: 2px dashed #005bb5;
+}
+
+.route2 {
+  font-size: 130%;
+  border-bottom: 2px dashed #b50045;
+}
