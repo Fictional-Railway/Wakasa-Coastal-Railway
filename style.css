@@ -94,22 +94,30 @@ body {
 
 /* ヒーロー部分 */
 .hero {
+  height: 100vh;
+  background: url("./img/若狭海岸鉄道1000形-ローアングル-hero.png") center/cover no-repeat;
+  position: relative;
+}
+
+@media (max-width: 870px) {
+  .hero {
   height: 70vh;
   background: url("./img/若狭海岸鉄道1000形-ローアングル-hero.png") center/cover no-repeat;
   position: relative;
+}
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column; /* ← 縦並びに */
   justify-content: center;
   align-items: center;
   text-align: center;
   color: white;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .hero-title {
